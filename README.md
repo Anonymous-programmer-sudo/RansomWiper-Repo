@@ -3,5 +3,15 @@ Welcome to the RansomWiper repository, where you could try out "RansomWiper" (in
 Code explaination file: Explain.md
 # Why I created this malware?
 I just wanted to spread awareness about the ever growing problem called Piracy, and how it can be used to spread malware, and how the option of pirating is always available to those who are looking for it, and also why it is worse than buying the software or using the free alternatives.
-# Where is the program? I can't find it
+# What's allowed and what's not allowed?
+You are allowed to do the following:
+- Try the malware by yourself on a controlled invironment.
+- Tweak its code.
+- Use it for EDUCATIONAL PURPOSES ONLY.
+You are NOT allowed to do the following:
+- Spread it to the internet.
+- Use it to prank people.
+- Use it on your main PC.
+- Create a cybercrime with it.
+# Where is the program? I can't find it.
 As I said, the program will be very dangerous so I won't upload it, but in the meantime, you could get the source code, and build it with `g++`.
