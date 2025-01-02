@@ -3,12 +3,11 @@ Welcome to the RansomWiper repository, where you could try out "RansomWiper" (in
 Code explaination file: Explain.md
 # Why I created this malware?
 I just wanted to spread awareness about the ever growing problem called Piracy, and how it can be used to spread malware, and how the option of pirating is always available to those who are looking for it, and also why it is worse than buying the software or using the free alternatives.
-# What's allowed and what's not allowed?
-You are allowed to do the following:
+# What's allowed?
 - Try the malware by yourself on a controlled invironment.
-- Tweak its code.
+- Tweak its code (but do NOT spread it to the world) .
 - Use it for EDUCATIONAL PURPOSES ONLY.
-You are NOT allowed to do the following:
+# What's not allowed? 
 - Spread it to the internet.
 - Use it to prank people.
 - Use it on your main PC.
