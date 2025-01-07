@@ -57,3 +57,5 @@ Let's say someone wanted to install the latest version of Autodesk AutoCAD witho
 - Ability to delete all accounts
 - Ability to prevent the pc from booting to a bootable external drive
 - Disguise changed to an antivirus software.
+# **NEED HELP?**
+If you have a problem with the code, you could open an issue on github.com and wait for us to answer, also if you want to help us develop the ransomware, you could just fork the repository and modify its code, and if you like, you could show us your modifications and we could add them to the code, but remember, this is a malicious program , and it is not intended to be used for good purposes, it is intended to be used for alerting people about the dangers of piracy, and the dangers of downloading software from suspicious websites, and the dangers of executing software as an administrator. But if you want to spread our warning , you could just copy the code and paste it in a new repository, and add a warning message to the code, and you could also add a link to our website.
